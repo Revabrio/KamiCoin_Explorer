@@ -17,8 +17,8 @@ def add_block(block_data):
         return -1
 
 def add_transaction(transaction):
-        conn = sqlite3.connect(database_file)
-    #try:
+    conn = sqlite3.connect(database_file)
+    try:
         cur = conn.cursor()
         cur.execute("INSERT INTO transactions (from_type, from_address, to_address, amount, signature, sig_message, message, hash, timestamp_transaction)"
                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -28,9 +28,9 @@ def add_transaction(transaction):
         conn.commit()
         conn.close()
         return 1
-    #except:
-        #conn.close()
-        #return -1
+    except:
+        conn.close()
+        return -1
 
 def add_new_wallet(wallet_key):
     conn = sqlite3.connect(database_file)
